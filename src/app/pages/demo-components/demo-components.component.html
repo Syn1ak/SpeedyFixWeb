@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row p-4">
+    <div class="col-6">
+      <app-form-control label="Email:">
+        <input matInput [formControl]="usernameControl">
+      </app-form-control>
+
+      <form [formGroup]="formGroup">
+        <app-form-control label="Email:">
+          <input matInput formControlName="username">
+        </app-form-control>
+      </form>
+
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Placeholder">
+      </mat-form-field>
+
+
+      <app-mat-field>
+        <input matInput placeholder="Login">
+      </app-mat-field>
+    </div>
+  </div>
+</div>

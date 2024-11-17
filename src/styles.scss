@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+html {
+  --mat-form-field-container-height: 20px;
+  --mat-form-field-container-vertical-padding: 6px;
+
+  --mat-form-field-container-text-size: 14px;
+
+  --mdc-outlined-text-field-container-shape: 5px;
+}
+
+@supports (top: max(0%)) {
+  .mdc-text-field--outlined {
+    padding-left: max(12px, calc(var(--mdc-outlined-text-field-container-shape) + 4px)) !important;
+  }
+}
+
+.mat-mdc-form-field-error-wrapper {
+  padding: 0 0 !important;
+}
+
+
+
