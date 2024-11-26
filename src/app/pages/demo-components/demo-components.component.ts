@@ -1,20 +1,13 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {FormElementModule} from "../shared/form-control/form-control.module";
-import {MatFormField, MatInputModule} from "@angular/material/input";
-import {MatIcon} from "@angular/material/icon";
-import {MatFieldComponent} from "../shared/mat-field/mat-field.component";
+import {InputFieldComponent} from "../../shared/inputs/input-field/input-field.component";
 
 @Component({
   selector: 'app-demo-components',
   standalone: true,
   imports: [
-    FormElementModule,
-    MatInputModule,
     ReactiveFormsModule,
-    MatFormField,
-    MatIcon,
-    MatFieldComponent
+    InputFieldComponent,
   ],
   templateUrl: './demo-components.component.html',
   styleUrl: './demo-components.component.scss'

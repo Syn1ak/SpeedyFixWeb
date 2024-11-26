@@ -6,7 +6,7 @@
     {{ label }}
   </label>
   <mat-form-field appearance="outline">
-    <ng-content></ng-content>
+    <input matInput [formControl]="formControl" [type]="type" [placeholder]="placeholder" />
     @for (error of getErrors(); track error) {
       <mat-error>{{ error }}</mat-error>
     }

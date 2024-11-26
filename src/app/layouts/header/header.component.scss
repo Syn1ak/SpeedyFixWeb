@@ -1,0 +1,18 @@
+.navbar {
+  background-color: #1B263B;
+}
+
+.navbar-nav {
+  gap: 10px;
+}
+
+.nav-link {
+  font-size: 16px;
+  --bs-navbar-nav-link-padding-x: 1rem;
+}
+
+.nav-link.active {
+  background: #c87c01a3;
+  border-radius: 11px;
+  font-weight: 500;
+}

@@ -1,0 +1,30 @@
+<div class="container py-4 my-4">
+  <div class="text-center">
+    <img class="d-block mx-auto mb-4" src="../../../assets/speedyfix-text-logo.png" alt="" width="130" height="100">
+    <h1 style="font-size: 2.2em; font-weight: bold">Log In</h1>
+  </div>
+
+  <div style="max-width: 32rem;padding: 1rem;" class="w-100 m-auto">
+    <form class="px-5" [formGroup]="loginForm">
+      <app-input-field
+        [formControlName]="formControlNames.email"
+        label="Email:"
+        placeholder="Enter your email"
+      ></app-input-field>
+      <app-input-field
+        [formControlName]="formControlNames.password"
+        label="Password:"
+        placeholder="Enter your password"
+        type="password"
+      ></app-input-field>
+      <button (click)="submit()" class="btn btn-primary mt-3 w-100">
+        Login
+      </button>
+    </form>
+    <a routerLink="/sign-up" class="icon-link w-100 justify-content-center mt-3">
+      Sign Up
+      <mat-icon>chevron_right</mat-icon>
+    </a>
+
+  </div>
+</div>

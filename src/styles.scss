@@ -3,7 +3,6 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-
 html {
   --mat-form-field-container-height: 20px;
   --mat-form-field-container-vertical-padding: 6px;
@@ -21,6 +20,15 @@ html {
 
 .mat-mdc-form-field-error-wrapper {
   padding: 0 0 !important;
+}
+
+.btn-primary {
+  --bs-btn-bg: #de8e0c;
+  --bs-btn-border-color: #de8e0c;
+  --bs-btn-hover-bg: #be7807;
+  --bs-btn-hover-border-color: #be7807;
+  --bs-btn-active-bg: #a66e12;
+  --bs-btn-active-border-color: #a37c3c;
 }
 
 

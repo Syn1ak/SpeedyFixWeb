@@ -8,13 +8,13 @@ type TFormErrorValue<T extends Record<string, any> = any> = {
 }
 
 export const DEFAULT_INPUT_ERROR_MESSAGES: { [key: string]: TErrorConfigFn } = {
-  required: () => "Поле обов'язкове",
-  email: () => "Email  в неправильному форматі",
-  minlength: ({requiredLength}) => `Мінімальна довжина ${requiredLength} символів`,
-  maxlength: ({requiredLength}) => `Максимальна довжина ${requiredLength} символів`,
-  min: ({min}) => `Mінімальне значення ${min}`,
-  max: ({max}) => `Mаксимальне значення ${max}`,
-  pattern: () => `Невірний формат`,
+  required: () => "Field is required",
+  email: () => "Invalid email format",
+  minlength: ({requiredLength}) => `Minimum length is ${requiredLength} characters`,
+  maxlength: ({requiredLength}) => `Maximum length is ${requiredLength} characters`,
+  min: ({min}) => `Minimum value is ${min}`,
+  max: ({max}) => `Maximum value is ${max}`,
+  pattern: () => `Invalid format`,
 };
 
 
