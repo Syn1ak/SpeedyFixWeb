@@ -1,0 +1,50 @@
+<div class="container py-4 my-4">
+  <div style="max-width: 40rem;padding: 1rem;" class="w-100 m-auto">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <h1>Operations List</h1>
+      <button (click)="create()" mat-fab>
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    @for (operation of $operations(); track operation.id) {
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ operation.name }}</mat-card-title>
+          <mat-card-subtitle>{{ operation.price }}$</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="mt-5 mb-1">
+          <div class="row">
+            <div class="col-4">
+              Description:
+            </div>
+            <div class="col-8 text-wrap text-break">
+              {{ operation.description }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-4">Employees:</div>
+            <div class="col-8 text-wrap">
+              {{ operation.employees | displayEmployees }}
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="d-flex gap-1">
+          <!--          <button (click)="book(operation)" mat-flat-button color="primary">-->
+          <!--            <mat-icon>edit</mat-icon>-->
+          <!--            Book-->
+          <!--          </button>-->
+          <button (click)="edit(operation)" mat-flat-button color="primary">
+            <mat-icon>edit</mat-icon>
+            Edit
+          </button>
+          <button (click)="delete(operation)" mat-flat-button color="warn">
+            <mat-icon>delete</mat-icon>
+            Delete
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    }
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="d-flex flex-column gap-1">
+  <label>
+    @if (isRequired) {
+      <span>*</span>
+    }
+    {{ label }}
+  </label>
+  <mat-form-field appearance="outline">
+    <textarea matInput [formControl]="formControl" [placeholder]="placeholder"></textarea>
+    @for (error of getErrors(); track error) {
+      <mat-error>{{ error }}</mat-error>
+    }
+  </mat-form-field>
+</div>

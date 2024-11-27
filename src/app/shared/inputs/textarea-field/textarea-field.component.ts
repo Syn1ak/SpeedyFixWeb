@@ -1,22 +1,23 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {FormControl, FormGroupDirective, NgControl, ReactiveFormsModule, Validators} from "@angular/forms";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
 import {ABaseInputControl} from "../ABaseInputControl";
+import {FormControl, FormGroupDirective, NgControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ValidationErrorMessageInjectionToken} from "../errors/validation-error.message.builder";
+import {MatError, MatFormField} from "@angular/material/form-field";
+import {MatInput} from "@angular/material/input";
 
 @Component({
-  selector: 'app-input-field',
+  selector: 'app-textarea-field',
   standalone: true,
   imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
+    MatError,
+    MatFormField,
+    MatInput,
+    ReactiveFormsModule
   ],
-  templateUrl: './input-field.component.html',
-  styleUrl: './input-field.component.scss'
+  templateUrl: './textarea-field.component.html',
+  styleUrl: './textarea-field.component.scss'
 })
-export class InputFieldComponent extends ABaseInputControl<string> implements OnInit {
+export class TextareaFieldComponent extends ABaseInputControl<string> implements OnInit {
   private ngControl = inject(NgControl);
   private formGroupDirective = inject(FormGroupDirective, { host: true, optional: true });
 

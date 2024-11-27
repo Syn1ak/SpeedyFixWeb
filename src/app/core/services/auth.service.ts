@@ -13,9 +13,9 @@ export class AuthService {
   $token = signal<string>(null);
 
   login(loginDto: LoginDto) {
-    return this.http.post<string>(`${environment.apiUrl}/public/login`, loginDto)
+    return this.http.post<{ token: string }>(`${environment.apiUrl}/public/login`, loginDto)
       .pipe(
-        tap((token) => this.$token.set(token))
+        tap(({ token }) => this.$token.set(token))
       )
   }
 

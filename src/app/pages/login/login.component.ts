@@ -26,7 +26,7 @@ export class LoginComponent {
   private router = inject(Router);
 
   loginForm = new FormGroup<ControlsOf<LoginDto>>({
-    email: new FormControl(null, [Validators.required, Validators.email]),
+    username: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, Validators.required)
   });
   formControlNames = getFormControlsNames(this.loginForm);

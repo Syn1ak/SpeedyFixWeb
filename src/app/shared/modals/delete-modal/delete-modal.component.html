@@ -1,0 +1,14 @@
+<mat-dialog-content class="text-center">
+  <mat-icon style="font-size: 4rem; width: 4rem; height: 4rem; color: red">warning</mat-icon>
+  <p>
+    {{ data.message }}
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="warn" (click)="submit()" tabindex="1">
+    {{data.confirmButtonText}}
+  </button>
+  <button mat-raised-button [mat-dialog-close]="null" tabindex="-1">
+    {{data.cancelButtonText}}
+  </button>
+</mat-dialog-actions>
