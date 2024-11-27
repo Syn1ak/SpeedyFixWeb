@@ -1,0 +1,13 @@
+.full-page-background {
+  margin: 0 !important;
+  padding: 0 !important;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Додатково для ефекту фіксованого фону */
+  min-height: 100vh;
+  position: relative;
+}
+
+.white-background {
+  background-color: #fdfdfe;
+}
