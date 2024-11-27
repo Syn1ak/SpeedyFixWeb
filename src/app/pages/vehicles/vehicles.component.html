@@ -1,0 +1,70 @@
+<div class="container py-4 my-4">
+  <div style="max-width: 40rem;padding: 1rem;" class="w-100 m-auto">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <h1>Your Vehicles:</h1>
+      <button (click)="create()" mat-fab>
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    @for (vehicle of $vehicles(); track vehicle.id) {
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ vehicle.brand }} - {{ vehicle.model }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="mt-5 mb-1">
+          <div class="row">
+            <div class="col-3">
+              <strong>Year of release:</strong>
+            </div>
+            <div class="col-2 text-wrap text-break">
+              {{ vehicle.yearOfRelease }}
+            </div>
+            <div class="col-3">
+              <strong>Engine type:</strong>
+            </div>
+            <div class="col-4 text-wrap text-break">
+              {{ vehicle.engineType | localizeEngineType }}
+            </div>
+
+            <div class="col-3">
+              <strong>Displacement:</strong>
+            </div>
+            <div class="col-2 text-wrap text-break">
+              {{ vehicle.displacement }}
+            </div>
+            <div class="col-3">
+              <strong>Transmission type:</strong>
+            </div>
+            <div class="col-4 text-wrap text-break">
+              {{ vehicle.transmissionType | localizeTransmissionType }}
+            </div>
+
+            <div class="col-3">
+              <strong>Wheel radius:</strong>
+            </div>
+            <div class="col-2 text-wrap text-break">
+              {{ vehicle.wheelRadius }}
+            </div>
+            <div class="col-3">
+              <strong>Registration number:</strong>
+            </div>
+            <div class="col-4 text-wrap text-break">
+              {{ vehicle.registrationNumber }}
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="d-flex gap-1">
+          <button (click)="edit(vehicle)" mat-flat-button color="primary">
+            <mat-icon>edit</mat-icon>
+            Edit
+          </button>
+          <button (click)="delete(vehicle.id)" mat-flat-button color="warn">
+            <mat-icon>delete</mat-icon>
+            Delete
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    }
+  </div>
+</div>

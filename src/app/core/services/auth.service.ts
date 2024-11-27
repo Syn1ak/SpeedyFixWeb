@@ -4,44 +4,48 @@ import {LoginDto, SignUpDto} from "../dto/auth-dto";
 import {HttpClient} from "@angular/common/http";
 import {switchMap, tap} from "rxjs";
 
+export enum UserRole {
+  USER = 'USER',
+  ADMIN = 'ADMIN'
+}
+
+export interface UserInfo {
+  token: string;
+  id: number;
+  role: UserRole;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private http = inject(HttpClient);
 
-  $token = signal<string>(null);
+  $userInfo = signal<UserInfo>(null);
+
+  setUser(user: UserInfo) {
+    this.$userInfo.set(user);
+  }
+
+  isAuthenticated() {
+    return this.$userInfo();
+  }
 
   login(loginDto: LoginDto) {
-    return this.http.post<{ token: string }>(`${environment.apiUrl}/public/login`, loginDto)
+    return this.http.post<UserInfo>(`${environment.apiUrl}/public/login`, loginDto)
       .pipe(
-        tap(({ token }) => this.$token.set(token))
+        tap((val) => {
+          localStorage.setItem('user', JSON.stringify(val));
+          this.$userInfo.set(val);
+        })
       )
   }
 
-  private signUp(signUpDto: SignUpDto) {
-    return this.http.post<number>(`${environment.apiUrl}/public/api/user`, signUpDto)
-  }
-
   public signUpCustomer(signUpDto: SignUpDto) {
-    return this.signUp(signUpDto)
-      .pipe(
-        switchMap(id => this.createCustomer(id))
-      );
+    return this.http.post<number>(`${environment.apiUrl}/public/api/createCustomer`, signUpDto);
   }
 
-  public addNewEmployee(signUpDto: SignUpDto) {
-    return this.signUp(signUpDto)
-      .pipe(
-        switchMap(id => this.createEmployee(id))
-      );
-  }
-
-  private createEmployee(id: number) {
-    return this.http.post<number>(`${environment.apiUrl}/admin/api/employee`, { userId: id });
-  }
-
-  private createCustomer(id: number) {
-    return this.http.post<number>(`${environment.apiUrl}/public/api/customer`, { userId: id });
-  }
+  // public addNewEmployee(signUpDto: SignUpDto) {
+  //   return this.http.post<number>(`${environment.apiUrl}/admin/api/createEmployee`, );
+  // }
 }

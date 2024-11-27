@@ -13,16 +13,15 @@ export class OperationsService {
     return this.http.get<OperationDto[]>(`${environment.apiUrl}/public/api/operation`);
   }
 
-
   createOperation(operationDto: OperationViewDto) {
-    return this.http.post(`${environment.apiUrl}/public/api/operation`, operationDto);
+    return this.http.post(`${environment.apiUrl}/admin/api/operation`, operationDto);
   }
 
   updateOperation(operationDto: OperationViewDto) {
-    return this.http.put(`${environment.apiUrl}/public/api/operation`, operationDto);
+    return this.http.put(`${environment.apiUrl}/admin/api/operation`, operationDto);
   }
 
   deleteOperation(id: number) {
-    return this.http.delete(`${environment.apiUrl}/public/api/operation/${id}`);
+    return this.http.delete(`${environment.apiUrl}/admin/api/operation/${id}`);
   }
 }
