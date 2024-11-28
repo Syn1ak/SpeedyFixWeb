@@ -20,11 +20,4 @@ export class HistoryService {
   changeStatusOfOperation(id:number, status: string){
     return this.http.put(`${environment.apiUrl}/auth/api/operation/order/${id}/new/${status}`, {});
   }
-
-  operateEmployee(orderId:number, employeeId:number, isAdd: boolean){
-    return this.http.put(`${environment.apiUrl}/auth/api/operation/order/${orderId}/employee/${employeeId}/${isAdd}`, "");
-  }
-  operateOperation(orderId:number, operationId:number, isAdd: boolean){
-    return this.http.put(`${environment.apiUrl}/auth/api/operation/order/${orderId}/operation/${operationId}/${isAdd}`, "");
-  }
 }

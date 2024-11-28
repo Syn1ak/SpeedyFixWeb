@@ -98,7 +98,7 @@ export class HistoryComponent implements OnInit {
 
     this.historyService.changeStatusOfOperation(order.id, newStatus).subscribe({
       next: () => {
-        this.fetchOrdersByStatus(order.orderStatus);
+        window.location.reload();
       },
       error: err => {
         console.error('Error updating status', err);
