@@ -11,7 +11,7 @@ import {CommonModule} from "@angular/common";
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent implements OnInit{
-  stoInfo: StoDto | null = null;
+  stoInfo: StoDto;
 
   constructor(private stoService: StoService) {}
 
