@@ -14,6 +14,8 @@ import { of, switchMap, take } from "rxjs";
 import { HistoryService } from "./history.service";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { CommonModule } from "@angular/common";
+import {MatSelectModule} from "@angular/material/select";
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 @Component({
   selector: 'app-history',
@@ -30,7 +32,9 @@ import { CommonModule } from "@angular/common";
     MatTabGroup,
     MatTab,
     MatProgressSpinnerModule,
-    CommonModule
+    CommonModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.scss']
@@ -46,7 +50,7 @@ export class HistoryComponent implements OnInit {
     label: key
   }));
   $loading = signal<{ [status: string]: boolean }>({});
-
+  selectedStatus: { [orderId: number]: string } = {};
   isAdmin = this.authService.isAdmin();
 
   ngOnInit() {
@@ -79,6 +83,7 @@ export class HistoryComponent implements OnInit {
   cancelOrder(order: OperationOrderDto) {
     this.historyService.changeStatusOfOperation(order.id, OperationOrderStatusType.CANCELLED).subscribe({
       next: () => {
+        window.location.reload();
       },
       error: (err) => {
         console.error('Error cancelling order', err);
@@ -88,9 +93,16 @@ export class HistoryComponent implements OnInit {
 
 
 
-  editOrder(order: OperationOrderDto) {
-    // Логіка для редагування замовлення (можливо, виклик модального вікна для редагування)
-    console.log('Editing order:', order);
-    //this.modalService.openEditOrderModal(order); // Викликаємо модальне вікно редагування
+  adminUpdateOrderStatus(order: OperationOrderDto, newStatus: string) {
+    if (!newStatus) return;
+
+    this.historyService.changeStatusOfOperation(order.id, newStatus).subscribe({
+      next: () => {
+        this.fetchOrdersByStatus(order.orderStatus);
+      },
+      error: err => {
+        console.error('Error updating status', err);
+      }
+    });
   }
 }

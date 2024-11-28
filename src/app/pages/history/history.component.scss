@@ -11,3 +11,39 @@
 mat-card {
   border: 1px solid #ddd;
 }
+
+.custom-button {
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+
+  &:active {
+    transform: scale(0.95);
+    transition: transform 0.2s;
+  }
+
+  &:hover {
+    background-color: rgba(255, 64, 129, 0.2);
+  }
+
+  &[disabled] {
+    background-color: rgba(0, 0, 0, 0.12);
+    color: rgba(0, 0, 0, 0.26);
+  }
+}
+.actions-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: flex-start;
+}
+
+.status-selector {
+  flex-grow: 1;
+}
+
+
+

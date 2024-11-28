@@ -37,15 +37,31 @@
               </div>
             </div>
           </mat-card-content>
+
           <mat-card-actions *ngIf="!isAdmin && status.value === 'PENDING'">
             <button mat-button (click)="cancelOrder(order)" style="background-color: grey">Cancel</button>
           </mat-card-actions>
 
-          <!-- Кнопка для редагування замовлення для адміністратора -->
-          <mat-card-actions *ngIf="isAdmin">
-            <button mat-button (click)="editOrder(order)">Edit</button>
+          <mat-card-actions *ngIf="isAdmin" class="actions-container">
+            <mat-form-field appearance="outline" class="status-selector">
+              <mat-label>Select Status</mat-label>
+              <mat-select [(value)]="selectedStatus[order.id]">
+                <mat-option *ngFor="let status of $statuses" [value]="status.value">
+                  {{ status.label }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button
+              mat-raised-button
+              color="accent"
+              (click)="adminUpdateOrderStatus(order, selectedStatus[order.id])"
+              [disabled]="!selectedStatus[order.id] || selectedStatus[order.id] === order.orderStatus"
+              class="custom-button"
+            >
+              <mat-icon>sync</mat-icon>
+              Update Status
+            </button>
           </mat-card-actions>
-
         </mat-card>
       </div>
     </mat-tab>
