@@ -7,6 +7,7 @@ import {MatButton, MatFabButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {OperationsModalService} from "./operations-modal.service";
 import {DisplayEmployeesPipe} from "../../shared/pipes/display-employees.pipe";
+import {AuthService} from "../../core/services/auth.service";
 
 @Component({
   selector: 'app-operations',
@@ -22,6 +23,7 @@ import {DisplayEmployeesPipe} from "../../shared/pipes/display-employees.pipe";
   styleUrl: './operations.component.scss'
 })
 export class OperationsComponent implements OnInit {
+  public authService = inject(AuthService);
   private operationsService = inject(OperationsService);
   private operationsModalService = inject(OperationsModalService);
 

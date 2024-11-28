@@ -27,22 +27,27 @@ export class HeaderComponent {
     {
       label: 'Home',
       path: '/home',
+      allowedRoles: [UserRole.USER, UserRole.ADMIN]
     },
     {
       label: 'Operations',
-      path: '/operations'
+      path: '/operations',
+      allowedRoles: [UserRole.USER, UserRole.ADMIN]
     },
     {
       label: 'Vehicles',
-      path: '/vehicles'
+      path: '/vehicles',
+      allowedRoles: [UserRole.USER]
     },
     {
       label: 'Employees',
-      path: '/employees'
+      path: '/employees',
+      allowedRoles: [UserRole.ADMIN]
     },
     {
       label: 'Profile',
-      path: '/customer'
+      path: '/customer',
+      allowedRoles: [UserRole.USER]
     },
   ]
 }

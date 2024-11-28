@@ -3,10 +3,11 @@ import { environment } from "../../../environments/environment";
 import {LoginDto, SignUpDto} from "../dto/auth-dto";
 import {HttpClient} from "@angular/common/http";
 import {switchMap, tap} from "rxjs";
+import {Router} from "@angular/router";
 
 export enum UserRole {
-  USER = 'USER',
-  ADMIN = 'ADMIN'
+  USER = 'ROLE_USER',
+  ADMIN = 'ROLE_ADMIN'
 }
 
 export interface UserInfo {
@@ -19,9 +20,23 @@ export interface UserInfo {
   providedIn: 'root'
 })
 export class AuthService {
+  private router = inject(Router);
   private http = inject(HttpClient);
 
   $userInfo = signal<UserInfo>(null);
+
+  hasRoles(allowedRoles: UserRole[]) {
+    const userRoles = [this.$userInfo()?.role];
+    return allowedRoles.some(role => userRoles.includes(role));
+  }
+
+  isUser() {
+    return this.$userInfo()?.role === UserRole.USER;
+  }
+
+  isAdmin() {
+    return this.$userInfo()?.role === UserRole.ADMIN;
+  }
 
   setUser(user: UserInfo) {
     this.$userInfo.set(user);
@@ -39,6 +54,12 @@ export class AuthService {
           this.$userInfo.set(val);
         })
       )
+  }
+
+  logout() {
+    localStorage.clear();
+    this.$userInfo.set(null);
+    return this.router.navigate(['/'])
   }
 
   public signUpCustomer(signUpDto: SignUpDto) {
