@@ -1,5 +1,8 @@
 import {EnumToSelectList} from "../utils/enum-to-select-list.util";
 import {EmployeeDto, EmployeeView} from "./employees-dto";
+import {OperationDto} from "./operations-dto";
+import {VehicleDto} from "./vehicles-dto";
+import {CustomerDto} from "./auth-dto";
 
 export interface OperationOrderViewDto {
   orderStatus: OperationOrderStatusType;
@@ -9,6 +12,25 @@ export interface OperationOrderViewDto {
   customerId: number;
   employeeIds?: number[];
   employees?: EmployeeDto[];
+}
+export interface OperationOrderFullViewDto {
+  id:number;
+  orderStatus: OperationOrderStatusType;
+  endDate: string;
+  operationIds: number[];
+  vehicleId: number;
+  customerId: number;
+  employeeIds: number[];
+}
+export interface OperationOrderDto {
+  id: number;
+  orderStatus: OperationOrderStatusType;
+  startDate: string;
+  endDate: string;
+  operations: OperationDto[];
+  vehicle: VehicleDto;
+  customer: CustomerDto;
+  employee: EmployeeDto[];
 }
 
 export enum OperationOrderStatusType {

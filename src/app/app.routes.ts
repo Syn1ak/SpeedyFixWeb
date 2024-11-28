@@ -44,5 +44,9 @@ export const routes: Routes = [
   {
     path: 'forbidden',
     loadComponent: () => import('./pages/forbidden/forbidden.component').then(c => c.ForbiddenComponent)
+  },
+  {
+    path: 'orders',
+    loadComponent: () => import('./pages/history/history.component').then(c => c.HistoryComponent)
   }
 ];

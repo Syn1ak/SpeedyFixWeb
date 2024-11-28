@@ -1,0 +1,13 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.order-list {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card {
+  border: 1px solid #ddd;
+}

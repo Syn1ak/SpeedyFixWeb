@@ -49,5 +49,10 @@ export class HeaderComponent {
       path: '/customer',
       allowedRoles: [UserRole.USER]
     },
+    {
+      label: 'Orders',
+      path: '/orders',
+      allowedRoles: [UserRole.USER, UserRole.ADMIN]
+    }
   ]
 }
