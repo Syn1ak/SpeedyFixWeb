@@ -25,4 +25,8 @@ export const routes: Routes = [
     path: 'vehicles',
     loadChildren: () => import('./pages/vehicles/routes').then(r => r.ROUTES),
   },
+  {
+    path: 'customer',
+    loadComponent: () => import('./pages/customer/customer.component').then(c => c.CustomerComponent)
+  }
 ];

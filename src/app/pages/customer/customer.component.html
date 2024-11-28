@@ -1,0 +1,110 @@
+<div class="container py-4 my-4">
+  <div class="text-center">
+    <h1 class="mb-4" style="font-size: 2.2em; font-weight: bold">Customer Profile</h1>
+  </div>
+
+  <div style="max-width: 32rem; padding: 1rem;" class="w-100 m-auto">
+    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input
+          matInput
+          formControlName="firstName"
+          [readonly]="!isEditing"
+          placeholder="Enter your first name"
+        />
+        <mat-error *ngIf="customerForm.get('firstName')?.hasError('required')">
+          First Name is required
+        </mat-error>
+        <mat-error *ngIf="customerForm.get('firstName')?.hasError('maxlength')">
+          Maximum length is 200 characters
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input
+          matInput
+          formControlName="lastName"
+          [readonly]="!isEditing"
+          placeholder="Enter your last name"
+        />
+        <mat-error *ngIf="customerForm.get('lastName')?.hasError('required')">
+          Last Name is required
+        </mat-error>
+        <mat-error *ngIf="customerForm.get('lastName')?.hasError('maxlength')">
+          Maximum length is 200 characters
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          [readonly]=true
+          placeholder="Enter your email"
+        />
+        <mat-error *ngIf="customerForm.get('email')?.hasError('required')">
+          Email is required
+        </mat-error>
+        <mat-error *ngIf="customerForm.get('email')?.hasError('email')">
+          Enter a valid email
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Telephone Number</mat-label>
+        <input
+          matInput
+          formControlName="telephoneNumber"
+          [readonly]="!isEditing"
+          placeholder="Enter your phone number"
+        />
+        <mat-error
+          *ngIf="customerForm.get('telephoneNumber')?.hasError('required')"
+        >
+          Telephone Number is required
+        </mat-error>
+        <mat-error
+          *ngIf="customerForm.get('telephoneNumber')?.hasError('pattern')"
+        >
+          Must be a 10-digit number
+        </mat-error>
+      </mat-form-field>
+
+      <div class="d-flex justify-content-between mt-4">
+        <button
+          *ngIf="!isEditing"
+          mat-raised-button
+          color="primary"
+          class="w-100 me-2"
+          type="button"
+          (click)="toggleEdit()"
+        >
+          Edit
+        </button>
+        <button
+          *ngIf="isEditing"
+          mat-raised-button
+          color="accent"
+          class="w-100 me-2"
+          type="submit"
+        >
+          Save
+        </button>
+        <button
+          *ngIf="isEditing"
+          mat-raised-button
+          color="warn"
+          class="w-100"
+          type="button"
+          (click)="cancelEdit()"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

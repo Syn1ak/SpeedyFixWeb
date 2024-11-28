@@ -31,3 +31,8 @@ export enum EmployeeType {
   ADMIN = 'ADMIN',
   MECHANIC = 'MECHANIC'
 }
+
+export interface CustomerDto {
+  id: number;
+  user: UserDto;
+}
