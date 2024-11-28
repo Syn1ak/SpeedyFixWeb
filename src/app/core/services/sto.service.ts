@@ -12,4 +12,8 @@ export class StoService {
   checkStoStatus() {
     return this.http.get<StoDto>(`${environment.apiUrl}/public/api/info`);
   }
+
+  getTemperature() {
+    return this.http.get<string>(`${environment.apiUrl}/public/api/temperature`,{ responseType: 'text' as 'json' });
+  }
 }

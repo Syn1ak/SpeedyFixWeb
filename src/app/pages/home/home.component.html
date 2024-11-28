@@ -17,7 +17,7 @@
     <div class="white-background row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
       <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
         <h1 class="display-4 fw-bold lh-1 text-body-emphasis">Seasonal Recommendation</h1>
-        <p class="lead">To ensure safety on the road, make sure you have winter tires fitted now.</p>
+        <p class="lead" *ngIf="tires;">To ensure safety on the road, make sure you have {{ tires }} fitted now.</p>
       </div>
 
       <div class="col">
@@ -40,11 +40,15 @@
 
         <div class="col">
           <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('assets/photo1.jpg'); background-size: cover; background-position: center;">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"> </h3>
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"> </h3>
           </div>
         </div>
 
         <div class="col">
           <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('assets/photo2.jpg'); background-size: cover; background-position: center;">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"> </h3>
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"> </h3>
           </div>
         </div>
 
