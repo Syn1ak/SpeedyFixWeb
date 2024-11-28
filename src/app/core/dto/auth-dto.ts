@@ -36,3 +36,9 @@ export interface CustomerDto {
   id: number;
   user: UserDto;
 }
+
+export interface StoDto {
+  startTime: string;
+  endTime: string;
+  weekend: string;
+}
