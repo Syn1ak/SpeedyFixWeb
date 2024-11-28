@@ -1,30 +1,81 @@
 <div class="container py-4 my-4">
-  <div class="text-center">
-    <h1 style="font-size: 2.2em; font-weight: bold">{{ strategy.title }}</h1>
-  </div>
-
-  <div style="max-width: 32rem;padding: 1rem;" class="w-100 m-auto">
-    <form class="row px-5" [formGroup]="formGroup">
-<!--      <app-input-field-->
-<!--        class=""-->
-<!--        [formControlName]="formControlNames."-->
-<!--        label="Brand:"-->
-<!--        placeholder="Enter vehicle brand"-->
-<!--      ></app-input-field>-->
-<!--      <app-input-field-->
-<!--        [formControlName]="formControlNames.password"-->
-<!--        label="Password:"-->
-<!--        placeholder="Enter your password"-->
-<!--        type="password"-->
-<!--      ></app-input-field>-->
-<!--      <button (click)="submit()" class="btn btn-primary mt-3 w-100">-->
-<!--        Login-->
-<!--      </button>-->
-    </form>
-    <a routerLink="/sign-up" class="icon-link w-100 justify-content-center mt-3">
-      Sign Up
-      <mat-icon>chevron_right</mat-icon>
-    </a>
-
+  <div style="max-width: 50rem;padding: 1rem;" class="w-100 m-auto">
+    <mat-card class="p-1">
+      <mat-card-header>
+        <mat-card-title>{{ strategy.title }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="mt-4">
+        <form class="row" [formGroup]="formGroup">
+          <app-input-field class="col-6"
+                           [formControlName]="formControlNames.brand"
+                           label="Brand:"
+                           placeholder="Enter vehicle brand"
+          ></app-input-field>
+          <app-input-field class="col-6"
+                           [formControlName]="formControlNames.model"
+                           label="Model:"
+                           placeholder="Enter vehicle model"
+          ></app-input-field>
+          <app-input-field class="col-6"
+                           [formControlName]="formControlNames.yearOfRelease"
+                           label="Year of release:"
+                           placeholder="Enter vehicle model"
+          ></app-input-field>
+          <div class="col-6 d-flex flex-column gap-1">
+            <label>
+              <span>*</span>
+              Engine type:
+            </label>
+            <mat-form-field appearance="outline">
+              <mat-select [formControlName]="formControlNames.engineType">
+                @for (type of engineTypes; track type.value) {
+                  <mat-option [value]="type.value">{{ type.label }}</mat-option>
+                }
+              </mat-select>
+              @if (formGroup.controls.engineType.invalid && formGroup.controls.engineType.touched) {
+                <mat-error>Field is required</mat-error>
+              }
+            </mat-form-field>
+          </div>
+          <app-input-field class="col-6"
+                           [formControlName]="formControlNames.displacement"
+                           type="number"
+                           label="Displacement:"
+                           placeholder="Enter vehicle displacement"
+          ></app-input-field>
+          <div class="col-6 d-flex flex-column gap-1">
+            <label>
+              <span>*</span>
+              Transmission type:
+            </label>
+            <mat-form-field appearance="outline">
+              <mat-select [formControlName]="formControlNames.transmissionType">
+                @for (type of transmissionTypes; track type.value) {
+                  <mat-option [value]="type.value">{{ type.label }}</mat-option>
+                }
+              </mat-select>
+              @if (formGroup.controls.transmissionType.invalid && formGroup.controls.transmissionType.touched) {
+                <mat-error>Field is required</mat-error>
+              }
+            </mat-form-field>
+          </div>
+          <app-input-field class="col-6"
+                           [formControlName]="formControlNames.wheelRadius"
+                           type="number"
+                           label="Wheel radius:"
+                           placeholder="Enter vehicle wheel radius"
+          ></app-input-field>
+          <app-input-field class="col-6"
+                           [formControlName]="formControlNames.registrationNumber"
+                           label="Registration number:"
+                           placeholder="Enter vehicle registration number"
+          ></app-input-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button routerLink="/vehicles" mat-button>Cancel</button>
+        <button (click)="submit()" mat-button>Save</button>
+      </mat-card-actions>
+    </mat-card>
   </div>
 </div>

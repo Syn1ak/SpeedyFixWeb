@@ -39,6 +39,7 @@ class UpdateVehicleStrategy extends ABaseUpsertVehicleStrategy {
       transmissionType: state.transmissionType,
       wheelRadius: state.wheelRadius,
       registrationNumber: state.registrationNumber,
+      ownerId: state.owner.id,
     })))
 
 

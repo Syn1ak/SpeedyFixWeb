@@ -1,0 +1,62 @@
+<h2 mat-dialog-title>Operation Order</h2>
+<mat-dialog-content>
+  <form [formGroup]="formGroup">
+    <div class="col-12 d-flex flex-column gap-1">
+      <label>
+        <span>*</span>
+        Vehicle:
+      </label>
+      <mat-form-field appearance="outline">
+        <mat-select [formControlName]="formControlNames.vehicleId">
+          @for (vehicle of $vehicles(); track vehicle.id) {
+            <mat-option [value]="vehicle.id">{{ vehicle.model }} - {{ vehicle.brand }}</mat-option>
+          }
+        </mat-select>
+        @if (formGroup.controls.vehicleId.invalid && formGroup.controls.vehicleId.touched) {
+          <mat-error>Field is required</mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <mat-form-field class="col-12" appearance="outline">
+      <input matInput [matDatepicker]="picker" [matDatepickerFilter]="dateFilter" [formControlName]="formControlNames.endDate">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <div class="d-flex flex-column gap-1">
+      <label>
+        <span>*</span>
+        Employees
+      </label>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-chip-grid #chipGrid [formControl]="$any(formGroup.controls.employees)">
+          @for (employee of formGroup.controls.employees.value; track employee.id) {
+            <mat-chip-row [value]="employee" (removed)="remove(employee.id)">
+              {{ employee.user.firstName + " " + employee.user.lastName }} ({{ employee.position }})
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+          }
+        </mat-chip-grid>
+        <input placeholder="New Fruit..." #employeesInput [formControl]="employeesCtrl"
+               [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"/>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          @for (employee of $employees(); track employee.id) {
+            <mat-option [value]="employee">
+              {{ employee.user.firstName + " " + employee.user.lastName }} ({{ employee.position }})
+            </mat-option>
+          }
+        </mat-autocomplete>
+        @if (formGroup.controls.employees.invalid && formGroup.controls.employees.touched) {
+          <mat-error>Field is required</mat-error>
+        }
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="null">Cancel</button>
+  <button mat-button (click)="submit()" cdkFocusInitial>Save</button>
+</mat-dialog-actions>

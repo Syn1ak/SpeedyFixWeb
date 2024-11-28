@@ -1,4 +1,4 @@
-import {EmployeeDto} from "./auth-dto";
+import {EmployeeDto} from "./employees-dto";
 
 export interface OperationDto {
   id?: number;
@@ -15,5 +15,3 @@ export interface OperationViewDto {
   price: number;
   employeeIds: number[];
 }
-
-

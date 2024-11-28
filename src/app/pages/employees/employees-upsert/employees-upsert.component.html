@@ -1,0 +1,58 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+<mat-dialog-content>
+  <form class="row" [formGroup]="formGroup">
+    <app-input-field class="col-6"
+                     [formControlName]="formControlNames.firstName"
+                     label="Firstname:"
+                     placeholder="Enter employee firstname"
+    ></app-input-field>
+    <app-input-field class="col-6"
+                     [formControlName]="formControlNames.lastName"
+                     label="Lastname:"
+                     placeholder="Enter employee lastname"
+    ></app-input-field>
+    <app-input-field class="col-6"
+                     [formControlName]="formControlNames.email"
+                     label="Email:"
+                     placeholder="Enter employee email"
+    ></app-input-field>
+    <app-input-field class="col-6"
+                     [formControlName]="formControlNames.telephoneNumber"
+                     type="number"
+                     label="Telephone number:"
+                     placeholder="Enter employee telephone"
+    ></app-input-field>
+    <app-input-field class="col-6"
+                     [formControlName]="formControlNames.position"
+                     label="Position:"
+                     placeholder="Enter employee position"
+    ></app-input-field>
+    <div class="col-6 d-flex flex-column gap-1">
+      <label>
+        <span>*</span>
+        Type:
+      </label>
+      <mat-form-field appearance="outline">
+        <mat-select [formControlName]="formControlNames.type">
+          @for (type of employeeTypes; track type.value) {
+            <mat-option [value]="type.value">{{ type.label }}</mat-option>
+          }
+        </mat-select>
+        @if (formGroup.controls.type.invalid && formGroup.controls.type.touched) {
+          <mat-error>Field is required</mat-error>
+        }
+      </mat-form-field>
+    </div>
+    @if (!id) {
+      <app-input-field class="col-12"
+                       [formControlName]="formControlNames.password"
+                       label="Password:"
+                       placeholder="Enter employee password"
+      ></app-input-field>
+    }
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="null">Cancel</button>
+  <button mat-button (click)="submit()" cdkFocusInitial>Save</button>
+</mat-dialog-actions>

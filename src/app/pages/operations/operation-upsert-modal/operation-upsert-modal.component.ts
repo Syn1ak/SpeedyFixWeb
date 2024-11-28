@@ -13,11 +13,11 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatAutocompleteModule, MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {LiveAnnouncer} from "@angular/cdk/a11y";
-import {EmployeeService} from "../../../core/services/employee.service";
-import {EmployeeDto, EmployeeType} from "../../../core/dto/auth-dto";
+import {EmployeeService} from "../../employees/employee.service";
 import {AsyncPipe} from "@angular/common";
+import {EmployeeDto, EmployeeType} from "../../../core/dto/employees-dto";
 
-interface OperationUpsertModal {
+export interface OperationUpsertModal {
   title: string;
   initialModel: OperationDto;
 }

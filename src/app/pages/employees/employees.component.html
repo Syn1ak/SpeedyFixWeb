@@ -1,0 +1,45 @@
+<div class="container py-4 my-4">
+  <div style="max-width: 40rem;padding: 1rem;" class="w-100 m-auto">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <h1>Employees List</h1>
+      <button (click)="create()" mat-fab>
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
+    @for (employee of $employees(); track employee.id) {
+      <mat-card class="mt-3 shadow-lg">
+        <mat-card-header>
+          <mat-card-title>{{ employee.user.firstName }} {{ employee.user.lastName }}</mat-card-title>
+          <mat-card-subtitle>{{ employee.position }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="mt-2 mb-1">
+          <div class="row">
+            <div class="col-3">
+              <strong>Position:</strong>
+            </div>
+            <div class="col-9 text-wrap text-break">
+              {{ employee.position }}
+            </div>
+            <div class="col-3">
+              <strong>Type:</strong>
+            </div>
+            <div class="col-8 text-wrap">
+              {{ employee.type | localizeEmployeeType }}
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="d-flex gap-1">
+          <button (click)="edit(employee)" mat-flat-button color="primary">
+            <mat-icon>edit</mat-icon>
+            Edit
+          </button>
+          <button (click)="delete(employee)" mat-flat-button color="warn">
+            <mat-icon>delete</mat-icon>
+            Delete
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    }
+  </div>
+</div>

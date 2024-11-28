@@ -1,5 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import {EmployeeDto} from "../../core/dto/auth-dto";
+import {Pipe, PipeTransform} from '@angular/core';
+import {EmployeeDto} from "../../core/dto/employees-dto";
 
 @Pipe({
   name: 'displayEmployees',

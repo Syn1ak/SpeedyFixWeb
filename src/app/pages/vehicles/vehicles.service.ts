@@ -14,7 +14,7 @@ export class VehiclesService {
   }
 
   getVehicleById(id: number) {
-    return this.http.get<VehicleDto>(`${environment.apiUrl}/user/api/vehicle/${id}`);
+    return this.http.get<VehicleDto>(`${environment.apiUrl}/auth/api/vehicle/${id}`);
   }
 
   getVehiclesByOwner(id: number) {

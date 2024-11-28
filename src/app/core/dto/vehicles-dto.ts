@@ -63,11 +63,10 @@ export const EngineType_l18 = {
 export enum TransmissionType {
   MANUAL = 'MANUAL',
   TORQUE_CONVERTER = 'TORQUE_CONVERTER',
-  CONTINUOUSLY_VARIABLE = 'CONTINUOUSL_VARIABLE',
+  CONTINUOUSLY_VARIABLE = 'CONTINUOUSLY_VARIABLE',
   SEMI_AUTOMATIC = 'SEMI_AUTOMATIC',
   DUAL_CLUTCH = 'DUAL_CLUTCH',
 }
-
 
 export const TransmissionType_l18 = {
   [TransmissionType.MANUAL]: 'Manual',

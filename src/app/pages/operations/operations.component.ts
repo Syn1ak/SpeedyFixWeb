@@ -40,7 +40,8 @@ export class OperationsComponent implements OnInit {
   }
 
   book(item: OperationDto) {
-
+    this.operationsModalService.book(item)
+      .subscribe(() => {})
   }
 
   create() {
@@ -55,6 +56,9 @@ export class OperationsComponent implements OnInit {
 
   delete(item: OperationDto) {
     this.operationsModalService.delete(item)
-      .subscribe(() => this.fetchListOfOperations())
+      .subscribe((val) => {
+        if (!val) return;
+        this.fetchListOfOperations()
+      })
   }
 }

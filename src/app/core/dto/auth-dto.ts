@@ -20,16 +20,13 @@ export interface UserDto {
   password: string;
 }
 
-export interface EmployeeDto {
-  id: number;
-  position: string;
-  type: EmployeeType;
-  user: UserDto; // ??
-}
-
-export enum EmployeeType {
-  ADMIN = 'ADMIN',
-  MECHANIC = 'MECHANIC'
+export interface UserViewDto {
+  id?: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  telephoneNumber: string;
+  password: string;
 }
 
 export interface CustomerDto {

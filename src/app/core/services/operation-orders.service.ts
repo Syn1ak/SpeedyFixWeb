@@ -1,15 +1,15 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {OperationOrderViewDto} from "../dto/operation-order-dto";
 import {environment} from "../../../environments/environment";
-import {EmployeeDto} from "../dto/auth-dto";
 
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeService {
+export class OperationOrdersService {
   private http = inject(HttpClient);
 
-  getListOfOfEmployees() {
-    return this.http.get<EmployeeDto[]>(`${environment.apiUrl}/admin/api/employee`);
+  createOperationOrder(view: OperationOrderViewDto) {
+    return this.http.post(`${environment.apiUrl}/user/api/operation/order`, view)
   }
 }

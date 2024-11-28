@@ -11,10 +11,13 @@ import {
 } from "@angular/material/card";
 import {MatIcon} from "@angular/material/icon";
 import {VehiclesService} from "./vehicles.service";
-import {take} from "rxjs";
+import {of, switchMap, take} from "rxjs";
 import {EngineType, TransmissionType, VehicleDto} from "../../core/dto/vehicles-dto";
 import {LocalizeEngineTypePipe} from "../../shared/pipes/localize-engine-type.pipe";
 import {LocalizeTransmissionTypePipe} from "../../shared/pipes/localize-transmission-type.pipe";
+import {RouterLink} from "@angular/router";
+import {ModalService} from "../../core/services/modals/modal.service";
+import {AuthService} from "../../core/services/auth.service";
 
 @Component({
   selector: 'app-vehicles',
@@ -31,46 +34,42 @@ import {LocalizeTransmissionTypePipe} from "../../shared/pipes/localize-transmis
     MatFabButton,
     MatIcon,
     LocalizeEngineTypePipe,
-    LocalizeTransmissionTypePipe
+    LocalizeTransmissionTypePipe,
+    RouterLink
   ],
   templateUrl: './vehicles.component.html',
   styleUrl: './vehicles.component.scss'
 })
 export class VehiclesComponent implements OnInit {
+  private authService = inject(AuthService);
   private vehiclesService = inject(VehiclesService);
+  private modalService = inject(ModalService);
 
-  $vehicles = signal<VehicleDto[]>([
-    {
-      id: 1,
-      brand: 'Toyota',
-      model: 'Camry',
-      yearOfRelease: 2022,
-      engineType: EngineType.PETROL_NATURALLY_ASPIRATED,
-      displacement: 2500, // in cubic centimeters (cc)
-      transmissionType: TransmissionType.MANUAL,
-      wheelRadius: 18, // in inches
-      registrationNumber: 'ABC-1234',
-      owner: null,
-    }
-  ]);
+  $vehicles = signal<VehicleDto[]>([]);
 
   ngOnInit() {
-    // this.vehiclesService.getListOfVehicles()
-    //   .pipe(take(1))
-    //   .subscribe({
-    //     next: val => this.$vehicles.set(val)
-    //   });
+    this.fetchListOfVehicles();
   }
 
-  create() {
-
-  }
-
-  edit(vehicle: VehicleDto) {
-
+  fetchListOfVehicles() {
+    const id = this.authService.$userInfo()?.id;
+    this.vehiclesService.getVehiclesByOwner(id)
+      .pipe(take(1))
+      .subscribe({
+        next: val => this.$vehicles.set(val)
+      });
   }
 
   delete(id: number) {
-
+    this.modalService.deleteModal({ message: "Are you sure you want to delete that vehicle?" })
+      .pipe(switchMap((res) => {
+        if (!res) return of(null);
+        return this.vehiclesService.deleteVehicle(id)
+      })).subscribe({
+      next: (val) => {
+        if (!val) return;
+        this.fetchListOfVehicles()
+      }
+    });
   }
 }

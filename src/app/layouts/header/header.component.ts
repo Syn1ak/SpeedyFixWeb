@@ -37,6 +37,10 @@ export class HeaderComponent {
       path: '/vehicles'
     },
     {
+      label: 'Employees',
+      path: '/employees'
+    },
+    {
       label: 'Profile',
       path: '/customer'
     },
